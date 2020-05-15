@@ -41,7 +41,6 @@ function broken_links_init($conf)
  */
 function hook_broken_links_save_plugin_parameters($data)
 {
-
 	$conf = new ConfigManager();
 	$sessionManager = new SessionManager($_SESSION, $conf);
 	$loginManager = new LoginManager($conf, $sessionManager);
@@ -50,9 +49,8 @@ function hook_broken_links_save_plugin_parameters($data)
 	$loginManager->checkLoginState($_COOKIE, $clientIpId);
 	$history = new History($conf->get('resource.history'));
 
-	$action = $conf->get('plugins.DEFAULT_ACTION');
+	$action = $data['DEFAULT_ACTION'];
     if (!empty($action)) {
-		
 		$pluginManager = new PluginManager($conf);
 		$pluginManager->load($conf->get('general.enabled_plugins'));
 
@@ -69,7 +67,8 @@ function hook_broken_links_save_plugin_parameters($data)
 			curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
 			$response = curl_exec($handle);
 			$httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
-			if(in_array($httpCode,[404,410])) {
+			
+			if(in_array($httpCode,[0,403,404,410])) {
 				if ($action == "TAG"){
 					if (stripos($link["tags"],"@404")===false){
 						$link["tags"] = trim(trim($link["tags"])." @404");
