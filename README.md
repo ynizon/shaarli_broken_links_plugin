@@ -7,5 +7,5 @@ Plugin for <a href='https://github.com/shaarli/Shaarli'>shaarli</a> to remove or
 - In the parameters, choose REMOVE or TAG.
 - When you will save, the plugin will check all links.
 - If you have choosen REMOVE, the link will be detroyed.
-- If you have choosen TAG, a 404 tag will be added.
+- If you have choosen TAG, a @404 tag will be added.
 - Then the plugin will be automatically disabled after the check.
