@@ -1,0 +1,3 @@
+description="Check broken links - When you will save plugin parameter (it can be long)." 
+parameters="DEFAULT_ACTION"
+parameter.DEFAULT_ACTION="Write REMOVE or TAG for checking broken links. With TAG , you can filter urls with @404 Tag"
